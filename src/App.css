@@ -1,0 +1,138 @@
+body{
+  @apply font-Josefin
+}
+
+/* registration css start */
+
+.registration h1{
+ @apply text-4xl text-[#3085C3] font-bold text-center mt-4 }
+ .registration .login_registration_form{
+  @apply p-7 shadow-2xl
+ }
+
+.inputs input{
+  @apply w-full my-[10px] py-1 px-4 rounded-lg outline-secondary border 
+}
+.login_registration_form .inputs{
+  @apply px-3
+}
+.login_registration_form h2{
+  @apply text-center bg-tertiary text-4xl font-bold text-[#3085c3] py-[10px] rounded-lg mb-6
+}
+.btn_v_1{
+  @apply bg-black text-tertiary w-full py-1 px-4 rounded-lg text-xl font-bold mt-3 transition hover:bg-secondary
+}
+.btn_v_3 {
+@apply border-2 border-primary text-primary transition-all hover:bg-primary hover:text-white font-semibold pt-1 px-3 rounded hover:pt-1
+}
+
+.btn_v_4{
+  @apply border-2 border-[tomato] text-[tomato] transition-all hover:bg-[tomato] hover:text-white font-semibold pt-1 px-3 rounded hover:pt-1
+}
+.btn_v_6{
+  @apply border-2 border-secondary text-secondary transition-all hover:bg-secondary hover:text-white font-semibold  px-3 rounded-3xl 
+}
+.btn_v_5{
+  @apply border-2 border-fourth text-fourth transition-all hover:bg-fourth hover:text-white font-semibold pt-1 px-3 rounded hover:pt-1
+}
+.error_message{
+  @apply text-blue-500 text-sm text-center
+}
+#forgot_password h1{
+  @apply text-3xl text-primary text-center font-bold capitalize
+}
+#forgot_password input{
+  @apply w-full my-[10px] py-1 px-4 rounded-lg outline-secondary border 
+}
+
+/* registration css end */
+
+/* home css start */
+nav .profile_and_name{
+  @apply flex items-center gap-4
+}
+nav .profile_and_name .profile_img{
+  @apply w-[70px] h-[70px] rounded-full bg-white overflow-hidden
+}
+nav .profile_and_name h2{
+  @apply text-secondary font-bold
+}
+
+nav .menu_items{
+  @apply flex gap-8
+}
+nav .menu_items svg{
+  @apply text-secondary text-3xl hover:text-white transition-all
+}
+nav .default_profile_picture{
+  @apply absolute left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%] 
+}
+.main_content{
+  @apply p-3 flex justify-between flex-wrap mt-5
+}
+.main_content .item{
+  @apply w-[32.5%] pb-4 pl-3 pr-3 border-2 border-primary mb-5 rounded-lg shadow-lg h-[250px] overflow-y-scroll
+}
+.main_content .item .title{
+  @apply flex justify-between items-center sticky py-3 w-full bg-white left-0 top-0 
+}
+.main_content .item .title h2{
+  @apply text-lg text-secondary font-bold
+}
+.main_content .item .title svg{
+  @apply text-secondary text-xl
+}
+.item{
+  @apply  px-5 py-2 mt-5 rounded-lg h-[250px] overflow-y-scroll border-2 border-primary
+}
+
+.item .title{
+  @apply flex justify-between items-center sticky py-3 w-full bg-white left-0 top-0 
+}
+.item .title h2{
+  @apply text-lg text-secondary font-bold
+}
+.item .title svg{
+  @apply text-secondary text-xl
+}
+/* group list start */
+
+/* .list{
+  @apply flex justify-between items-center mb-4
+}
+.list .img{
+  @apply h-[50px] w-[50px] rounded-full overflow-hidden bg-primary
+}
+.list h2{
+  @apply text-base font-medium capitalize text-black 
+} */
+.profile_and_name .overlay{
+  @apply absolute left-0 top-0 w-full h-full bg-black bg-opacity-80 cursor-pointer 
+}
+.profile_and_name .overlay svg{
+  @apply text-secondary text-4xl absolute left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%]
+}
+.modal{
+  @apply h-screen w-full bg-primary left-0 top-0 absolute z-[9999] flex justify-center items-center
+}
+.modal .update_profile_img{
+  @apply w-[50%] p-10 rounded-lg bg-white 
+}
+.modal .update_profile_img h2{
+  @apply text-2xl font-bold text-black
+}
+.modal .update_profile_img .btn_v_3{
+  @apply text-black font-bold bg-blue-600 w-[70%] py-3
+}
+.modal .update_profile_img .btn_v_4{
+  @apply text-black font-bold w-[70%] py-3
+}
+/* group list end */
+
+/* home css end */
+::-webkit-scrollbar{
+  @apply w-[5px]
+}
+::-webkit-scrollbar-thumb{
+  @apply bg-gray-300 rounded-2xl
+}
