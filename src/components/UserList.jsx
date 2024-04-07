@@ -87,7 +87,7 @@ const UserList = () => {
   
   return (
     <div className="list">
-        <div className="title">
+        <div className="title z-50">
             <h2>User List</h2>
             <input onChange={handleSearch} type="text" placeholder="Search" className="border-2 border-primary outline-none rounded-lg px-2 w-[250px]" />
             <BsThreeDotsVertical />
@@ -98,12 +98,12 @@ const UserList = () => {
           searchUser.map((item,i)=>{
           
             return(
-              <div key={i}>
+              <div key={i} >
                 <div  className="mb-2">
               <div className="flex justify-between items-center">
                 <div className="flex gap-3 items-center">
                 <div className="h-[60px] w-[60px] bg-primary rounded-full overflow-hidden">
-                  {/* <img className="w-full" src={item.photoURL} alt="" /> */}
+                  
                   <UsersProfileImg imgId={item.id}></UsersProfileImg>
                 </div>
                 <div>
