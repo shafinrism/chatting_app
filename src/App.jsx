@@ -7,6 +7,7 @@ import { ToastContainer } from 'react-toastify'
 import Home from './pages/Home/Home'
 import ForgotPassword from './pages/ForgotPassword/ForgotPassword'
 import Chat from './pages/Chat/Chat'
+import Notification from './pages/Notification'
 
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
     <Route path='/home' element={<Home></Home>}></Route>
     <Route path='/login' element={<Login></Login>}></Route>
     <Route path='/chat' element={<Chat></Chat>}></Route>
+    <Route path='/notification' element={<Notification></Notification>}></Route>
    </Routes>
     
    </>

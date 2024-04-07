@@ -114,7 +114,7 @@ const Navbar = () => {
           <Link to="/chat">
             <BsChatFill />
           </Link>
-          <Link to="/">
+          <Link to="/notification">
             <IoNotifications />
           </Link>
           <div className="cursor-pointer">
