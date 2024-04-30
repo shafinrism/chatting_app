@@ -15,7 +15,9 @@ const Chatting = () => {
   const storage = getStorage();
   const db = getDatabase();
   const activeChatName = useSelector((state) => state.activeChatSlice);
-  const data = useSelector((state) => state.userLoginInfo.userInfo);
+  console.log(activeChatName);
+  const data = useSelector((state)=>state.userLoginInfo.userInfo)
+  console.log(data);
   const [message, setMessage] = useState("");
   const [messageList, setMessageList] = useState([]);
   const [isDisabled, setIsDisabled] = useState(true);
