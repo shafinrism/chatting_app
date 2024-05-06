@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.1.0",
-    "firebase": "^10.7.2",
+    "firebase": "^10.11.1",
     "lottie-react": "^2.4.0",
     "react": "^18.2.0",
     "react-cropper": "^2.3.3",

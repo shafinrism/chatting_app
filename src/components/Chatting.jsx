@@ -5,8 +5,7 @@ import { IoSendSharp } from "react-icons/io5";
 import { AiTwotoneAudio } from "react-icons/ai";
 import { useSelector } from "react-redux";
 import { useState, useEffect } from "react";
-import { getStorage, ref as sref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
-
+import { getDownloadURL, getStorage, uploadBytesResumable,ref as sref } from "firebase/storage";
 import { getDatabase, onValue, push, ref, set } from "firebase/database";
 
 const imgUrl = 'https://i.pinimg.com/736x/a5/e8/9d/a5e89dc19d0a7690253ccb52b6c85fc7.jpg';
@@ -66,7 +65,7 @@ const Chatting = () => {
       });
       setMessageList(arr);
     });
-  }, [activeChatName.active.id]);
+  }, [activeChatName.active?.id]);
 
   // handle Message end
 
@@ -131,7 +130,7 @@ const Chatting = () => {
 
       <div>
       {
-        activeChatName.active.status ?
+        activeChatName.active?.status == "single"?
         (
           messageList.map((item,i)=>{
             return(

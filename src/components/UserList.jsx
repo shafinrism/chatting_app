@@ -1,8 +1,8 @@
 import { BsThreeDotsVertical } from "react-icons/bs";
-import {  getDatabase, onValue, push, ref, set } from "firebase/database";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import UsersProfileImg from "./UsersProfileImg";
+import {getDatabase, onValue, push, ref, set} from "firebase/database"
 
 
 
@@ -104,11 +104,11 @@ const UserList = () => {
                 <div className="flex gap-3 items-center">
                 <div className="h-[60px] w-[60px] bg-primary rounded-full overflow-hidden">
                   
-                  <UsersProfileImg imgId={item.id}></UsersProfileImg>
+                  <UsersProfileImg imgId={item?.id}></UsersProfileImg>
                 </div>
                 <div>
-                  <h2 className="font-bold text-base mb-0 pb-0 capitalize">{item.username}</h2>
-                  <h2 className="text-sm  font-medium">{item.email}</h2>
+                  <h2 className="font-bold text-base mb-0 pb-0 capitalize">{item?.username}</h2>
+                  <h2 className="text-sm  font-medium">{item?.email}</h2>
                 </div>
                 </div>
   

@@ -1,5 +1,6 @@
 
-import { ref, getDownloadURL, getStorage } from "firebase/storage";
+// import { ref, getDownloadURL, getStorage } from "firebase/storage";
+import { getDownloadURL, getStorage, ref } from "firebase/storage";
 import { useEffect, useState } from "react";
 
 
@@ -18,7 +19,7 @@ const UsersProfileImg = ({imgId}) => {
       .catch((error)=>{
         console.log(error);
       })
-  },[])
+  },[imgId])
  
 
   return (
