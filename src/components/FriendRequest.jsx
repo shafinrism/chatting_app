@@ -4,18 +4,13 @@ import { BsThreeDotsVertical } from "react-icons/bs";
 import { useSelector } from "react-redux";
 import UsersProfileImg from "./UsersProfileImg";
 
-
-
-
 const FriendRequest = () => {
 
   const db = getDatabase()
   const data = useSelector((state)=>state.userLoginInfo.userInfo)
   let [friendRequestList,setFriendRequestList] = useState([])
   
-
-
-// get friend request list from friend request collection start
+  // get friend request list from friend request collection start
   useEffect(()=>{
     const friendRequestRef = ref(db,'friendRequest')
     onValue(friendRequestRef,(snapshot)=>{
@@ -29,7 +24,6 @@ const FriendRequest = () => {
     })
   },[])
 
-
   // get friend request list from friend request collection end
 
   // friend request accept start
@@ -42,45 +36,43 @@ const FriendRequest = () => {
     })
   }
   // friend request accept end
+
   // friend request cancel start
   const handleFriendRequestCancel = (item)=>{
     remove(ref(db,'friendRequest/' + item.id))
   }
   // friend request cancel end
+
   return (
     <div className="list">
-        <div className="title">
-            <h2>Friend Request</h2>
-            <BsThreeDotsVertical />
-        </div>
+      <div className="title flex justify-between items-center">
+        <h2 className="text-lg font-bold">Friend Request</h2>
+        <BsThreeDotsVertical className="text-xl" />
+      </div>
 
       <div>
         {
           friendRequestList.map((item)=>{
             return(
-              <div key={item.id}>
-                <div  className="mb-2">
-              <div className="flex justify-between items-center">
-                <div className="flex gap-3 items-center">
-                <div className="h-[60px] w-[60px] bg-primary rounded-full overflow-hidden">
-                  <UsersProfileImg imgId={item.senderId}></UsersProfileImg>
+              <div key={item.id} className="mb-2">
+                <div className="flex justify-between items-center">
+                  <div className="flex gap-3 items-center">
+                    <div className="h-16 w-16 bg-primary rounded-full overflow-hidden">
+                      <UsersProfileImg imgId={item.senderId}></UsersProfileImg>
+                    </div>
+                    <div>
+                      <h2 className="font-bold text-base mb-0 pb-0 capitalize">{item.senderName}</h2>
+                    </div>
+                  </div>
+                  <div className="flex gap-2">
+                    <button onClick={()=>handleFriendRequestAccept(item)} className="btn_v_3">Accept</button>
+                    <button onClick={()=>handleFriendRequestCancel(item)} className="btn_v_4">Cancel</button>
+                  </div>
                 </div>
-                <div>
-                  <h2 className="font-bold text-base mb-0 pb-0 capitalize">{item.senderName}</h2>
-                  
-                </div>
-                </div>
-                <div className="flex gap-2">
-                  <button onClick={()=>handleFriendRequestAccept(item)} className="btn_v_3">Accept</button>
-                  <button onClick={()=>handleFriendRequestCancel(item)} className="btn_v_4">Cancel</button>
-                </div>
-              </div>
-            </div> 
-              </div>
+              </div> 
             )
           })
         }
-
       </div> 
     </div>
   );

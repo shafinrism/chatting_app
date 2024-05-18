@@ -95,17 +95,7 @@ nav .default_profile_picture{
 .item .title svg{
   @apply text-secondary text-xl
 }
-/* group list start */
 
-/* .list{
-  @apply flex justify-between items-center mb-4
-}
-.list .img{
-  @apply h-[50px] w-[50px] rounded-full overflow-hidden bg-primary
-}
-.list h2{
-  @apply text-base font-medium capitalize text-black 
-} */
 .profile_and_name .overlay{
   @apply absolute left-0 top-0 w-full h-full bg-black bg-opacity-80 cursor-pointer 
 }

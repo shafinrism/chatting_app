@@ -1,7 +1,3 @@
-
-
-
-import { Button_v_1 } from "../../components/Button"
 import { useState } from "react";
 import { FaEyeSlash, FaEye } from "react-icons/fa";
 import { toast } from 'react-toastify';
@@ -11,159 +7,128 @@ import { Blocks } from 'react-loader-spinner'
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { userLoginInfo } from "../../slices/userSlice";
+import { Button_v_1 } from "../../components/Button";
 
 const Login = () => {
-  // redux dispatch start 
-  const dispatch = useDispatch()
-  // redux dispatch end
-  const navigate = useNavigate()
-  const auth = getAuth()
-    // input validation start
-   
-    const [email, setEmail] = useState("")
-    const [password, setPassword] = useState("")
-    
-    // input validation end
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const auth = getAuth();
 
-    // email & name regex start
-    const emailRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [emailError, setEmailError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const [loader, setLoader] = useState(false);
 
-    
-    // email regex end
+  const emailRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
-    // show password start
-    const [showPassword,setShowPassword] = useState(false)
-    const handleShowPassword = ()=>{
-      setShowPassword(!showPassword)
-    }
-    // show password end
+  const handleShowPassword = () => {
+    setShowPassword(!showPassword);
+  }
 
-    // input field error start
-    
-    const [emailError, setEmailError] = useState("")
-    const [passwordError, setPasswordError] = useState("")
-    
-    // input field error end
+  const handleEmail = (e) => {
+    setEmail(e.target.value);
+    setEmailError("");
+  }
 
-    // loader start
-    const [loader, setLoader] = useState(false)
-    // loader end
+  const handlePassword = (e) => {
+    setPassword(e.target.value);
+    setPasswordError("");
+  }
 
-    // get input value start
-    
-    const handleEmail = (e)=>{
-      setEmail(e.target.value)
-      setEmailError("")
-    }
-    const handlePassword = (e) =>{
-      setPassword(e.target.value)
-      setPasswordError("")
-    }
-    
-    // get input value end
+  const handleSubmit = (e) => {
+    e.preventDefault();
 
-    // Login start
-    const handleSubmit = (e)=>{
-      e.preventDefault()
-        if (!email) {
-        setEmailError("Email is required");
-      } else if (!emailRegex.test(email)) {
-        setEmailError("Please enter a valid email");
-      } else if (!password) {
-        setPasswordError("Please enter a password");
-      } else{
-        setLoader(true)
-        signInWithEmailAndPassword(auth, email, password)
+    if (!email) {
+      setEmailError("Email is required");
+    } else if (!emailRegex.test(email)) {
+      setEmailError("Please enter a valid email");
+    } else if (!password) {
+      setPasswordError("Please enter a password");
+    } else {
+      setLoader(true);
+      signInWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
           const user = userCredential.user;
-          console.log(user);
           toast.success("Login Successful");
           setLoader(false);
-          dispatch(userLoginInfo(user))
-          localStorage.setItem("user",JSON.stringify(user))
+          dispatch(userLoginInfo(user));
+          localStorage.setItem("user", JSON.stringify(user));
           navigate("/home");
         })
         .catch((error) => {
           const errorCode = error.code;
           const errorMessage = error.message;
-          console.log(errorCode);
-          console.log(errorMessage);
-          
-// if porshon is not working
+          console.error(errorCode, errorMessage);
           if (errorCode === "auth/wrong-password") {
             setPasswordError("Wrong password");
             toast.error("Wrong Password");
-          }
-          else if (errorCode === "auth/invalid-credential") {
+          } else if (errorCode === "auth/invalid-credential") {
             setEmailError("User not found");
             toast.error("User not found");
-          } 
+          }
           setLoader(false);
         });
-      }
-
-     
-
-
     }
-    // login end
-
-
+  }
 
   return (
-    <div className=" h-screen registration  bg-primary ">
-      
-      <div className="container mx-auto flex justify-center items-center h-screen">
-
-          <div className="w-[40%] login_registration_form">
-
-            <div>
-              <h2>Login</h2>
-            </div>
-
-            <form onSubmit={handleSubmit}  className="inputs">
-
-              
-              <input onChange={handleEmail} value={email} type="email" placeholder="Email" />
-              <p className="error_message">{emailError}</p>
-
-              <div className="relative">
-
-              <input onChange={handlePassword} value={password} type={showPassword ? "text" : "password"} placeholder="Password" />
-              <p className="error_message">{passwordError}</p>
-              {
-                showPassword ?
-                <FaEye onClick={handleShowPassword} className="absolute right-[16px] top-[18px] cursor-pointer text-[#5CD2E6]" />
-                
-                :
-                <FaEyeSlash onClick={handleShowPassword} className="absolute right-[16px] top-[18px] cursor-pointer text-[#5CD2E6]" />
-              }
-              
-              </div>
-
-              
-              {
-                loader ?
-                <div className="flex justify-center"><Blocks></Blocks></div>
-                :
-                <Button_v_1 type='submit'>Login</Button_v_1>
-              }
-              <div className="text-[18px] mt-4 text-center">
-              <p>
-                Dont have an account ? <Link className="font-bold text-blue-600 " to='/'>Registration here</Link>
-                
-                </p>
-                <p><Link className="font-bold text-blue-600 " to='/forgotPassword'>Forgot password</Link></p>
-              </div>
-              
-              
-              
-            </form> 
-
+    <div className="h-screen bg-primary flex justify-center items-center">
+      <div className="w-full max-w-md px-4">
+        <h2 className="text-2xl font-bold mb-8 text-center">Login</h2>
+        <form onSubmit={handleSubmit}>
+          <input
+            className="w-full border border-gray-300 rounded px-3 py-2 mb-3 focus:outline-none focus:border-blue-500"
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={handleEmail}
+          />
+          {emailError && <p className="text-red-500 mb-3">{emailError}</p>}
+          <div className="relative">
+            <input
+              className="w-full border border-gray-300 rounded px-3 py-2 mb-3 focus:outline-none focus:border-blue-500"
+              type={showPassword ? "text" : "password"}
+              placeholder="Password"
+              value={password}
+              onChange={handlePassword}
+            />
+            {showPassword ? (
+              <FaEyeSlash
+                onClick={handleShowPassword}
+                className="absolute right-3 top-3 cursor-pointer text-blue-500"
+              />
+            ) : (
+              <FaEye
+                onClick={handleShowPassword}
+                className="absolute right-3 top-3 cursor-pointer text-blue-500"
+              />
+            )}
           </div>
-
+          {passwordError && <p className="text-red-500 mb-3">{passwordError}</p>}
+          {loader ? (
+            <div className="flex justify-center mb-3">
+              <Blocks />
+            </div>
+          ) : (
+            <Button_v_1 type="submit">Login</Button_v_1>
+          )}
+          <div className="text-center">
+            <p>
+              Dont have an account ?{" "}
+              <Link to="/" className="font-bold text-blue-600">
+                Registration here
+              </Link>
+            </p>
+            <p>
+              <Link to="/forgotPassword" className="font-bold text-blue-600">
+                Forgot password
+              </Link>
+            </p>
+          </div>
+        </form>
       </div>
-
     </div>
   );
 };
